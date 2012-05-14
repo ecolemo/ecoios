@@ -1,0 +1,9 @@
+"m" = "m";
+"male" = "m";
+"f" = "f";
+"female" = "f";
+"%2.0fs" = "%2.0f sec";
+"%2.0fm" = "%2.0f min";
+"%2.0fh" = "%2.0f hours";
+"%2.0fd" = "%2.0f days";
+"long ago" = "long ago";
