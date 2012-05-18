@@ -17,4 +17,10 @@
     return currentYear - birthYear;
 }
 
++ (NSString*)UTCDateFormat:(NSDate*)date {
+    NSDateFormatter* format = [[NSDateFormatter alloc] init];
+    format.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss'Z'";
+    return [format stringFromDate:date];
+}
+
 @end

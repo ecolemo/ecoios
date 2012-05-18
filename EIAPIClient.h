@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define urlencode(s)    [s stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
 #define CONNECTION_TIMEOUT 7
 typedef void (^EIErrorHandler)(NSError* error);
 typedef void (^EIResponseHandler)(NSDictionary*);
@@ -20,7 +19,6 @@ typedef void (^EIResponseHandler)(NSDictionary*);
     NSInteger statusCode;
 }
 
-+ (void)parseData : (NSData*)data andHandler:(void (^)(NSDictionary* result))handler andErrorHandler:(EIErrorHandler)errorHandler; 
 - (id)initWithSuccessHandler: (void (^)(NSDictionary* result))handler andErrorHandler:(EIErrorHandler)error;
 
 @end
@@ -43,10 +41,12 @@ typedef void (^EIResponseHandler)(NSDictionary*);
 - (void)delete:(NSString*)path andBody:(NSString*)body onSuccess:(void (^)(NSDictionary* result))successHandler onError:(EIErrorHandler)errorHandler;
 
 /// sync
-- (void)sendSyncRequest:(NSMutableURLRequest*)request onSuccess:(void (^)(NSDictionary* result))handler onError:(EIErrorHandler)errorHandler;
-- (void)syncPost:(NSString*)path andBody:(NSString*)body onSuccess:(void (^)(NSDictionary* result))successHandler onError:(EIErrorHandler)errorHandler;
+//- (void)sendSyncRequest:(NSMutableURLRequest*)request onSuccess:(void (^)(NSDictionary* result))handler onError:(EIErrorHandler)errorHandler;
+//- (void)syncPost:(NSString*)path andBody:(NSString*)body onSuccess:(void (^)(NSDictionary* result))successHandler onError:(EIErrorHandler)errorHandler;
 @end
 
 NSString* formatURL(NSString* format, NSObject* first, ...);
 
 void (^EIErrorAlert)(NSError*);
+
+NSString* urlencode(NSString* str);
