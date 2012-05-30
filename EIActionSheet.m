@@ -11,11 +11,9 @@
 @implementation EIActionSheet
 
 - (id)initWithTitle:(NSString*)title {
-    NSLog(@"init");
     _title = [title retain];
     otherButtonTitles = [[NSMutableArray alloc] init];
     otherBlocks = [[NSMutableDictionary alloc] init];
-    NSLog(@"init %@", otherBlocks);
     return self;
 }
 
@@ -32,8 +30,7 @@
 - (void)addOtherButtonTitle:(NSString*)title block:(void (^)(void))block {
     [otherButtonTitles addObject: [title retain]];
     
-    [otherBlocks setObject:block forKey:title];
-    NSLog(@"%@ %@", title, otherBlocks);
+    [otherBlocks setObject:Block_copy(block) forKey:title];
 }
 
 - (void)showFromBarButtonItem:(id)sender {
@@ -49,7 +46,6 @@
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    NSLog(@"%d %@", buttonIndex, [actionSheet buttonTitleAtIndex:buttonIndex]);
     if (buttonIndex == actionSheet.destructiveButtonIndex) {
         destructiveBlock();
     } else if (buttonIndex == actionSheet.cancelButtonIndex) {
@@ -58,5 +54,9 @@
         void (^block)(void) = [otherBlocks objectForKey:[actionSheet buttonTitleAtIndex:buttonIndex]];
         block();
     }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+//    [actionSheet release];
 }
 @end
