@@ -11,5 +11,6 @@
 @interface EIDateUtils : NSObject
 
 + (NSInteger)ageFromUTCString:(NSString*)utcString;
++ (NSString*)UTCDateFormat:(NSDate*)date;
 
 @end

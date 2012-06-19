@@ -143,7 +143,7 @@
 //}
 
 - (void)sendRequest:(NSMutableURLRequest*)request onSuccess:(void (^)(NSDictionary* result))handler onError:(EIErrorHandler)errorHandler {
-    [EIWebUtils setCookieValue:credential name:@"login" domain:request.URL.host storage:[NSHTTPCookieStorage sharedHTTPCookieStorage]];
+//    [EIWebUtils setCookieValue:credential name:@"login" domain:request.URL.host storage:[NSHTTPCookieStorage sharedHTTPCookieStorage]];
     [request addValue:credential forHTTPHeaderField:@"Authorization"];
     NSString* bodyStr = [[NSString alloc] initWithData:[request HTTPBody] encoding:NSUTF8StringEncoding];
     NSLog(@"%@ %@ %@", [request HTTPMethod], [request URL], bodyStr);
